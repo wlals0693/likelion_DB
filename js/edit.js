@@ -7,7 +7,21 @@ const contentInput = document.querySelector('#content');
 const params = new URLSearchParams(location.search);
 const postId = params.get('id');
 
+let currentUser = null;
+
 async function getPost() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    alert('로그인이 필요합니다.');
+    location.href = './login.html';
+    return;
+  }
+
+  currentUser = user;
+
   const { data, error } = await supabase
     .from('posts')
     .select('*')
@@ -17,6 +31,12 @@ async function getPost() {
   if (error) {
     alert('게시글을 불러오지 못했습니다.');
     console.error(error);
+    location.href = './index.html';
+    return;
+  }
+
+  if (data.user_id !== currentUser.id) {
+    alert('본인이 작성한 글만 수정할 수 있습니다.');
     location.href = './index.html';
     return;
   }

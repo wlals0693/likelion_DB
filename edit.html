@@ -15,8 +15,12 @@
         <div class="menu">
           <a href="./index.html">홈</a>
           <a href="./write.html">글쓰기</a>
-          <a href="./login.html">로그인</a>
-          <a href="./signup.html">회원가입</a>
+
+          <a href="./login.html" id="loginLink">로그인</a>
+          <a href="./signup.html" id="signupLink">회원가입</a>
+
+          <span id="userEmail"></span>
+          <button id="logoutBtn" class="logout-btn">로그아웃</button>
         </div>
       </div>
     </header>
@@ -24,7 +28,6 @@
     <main class="container">
       <section class="form-section">
         <h2>글 수정</h2>
-
         <form id="editForm" class="post-form">
           <input
             type="text"
@@ -44,6 +47,7 @@
       </section>
     </main>
 
+    <script type="module" src="./js/header.js"></script>
     <script type="module" src="./js/edit.js"></script>
   </body>
 </html>

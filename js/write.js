@@ -4,6 +4,22 @@ const writeForm = document.querySelector('#writeForm');
 const titleInput = document.querySelector('#title');
 const contentInput = document.querySelector('#content');
 
+let currentUser = null;
+
+async function checkUser() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    alert('로그인이 필요합니다.');
+    location.href = './login.html';
+    return;
+  }
+
+  currentUser = user;
+}
+
 writeForm.addEventListener('submit', async function (event) {
   event.preventDefault();
 
@@ -18,6 +34,7 @@ writeForm.addEventListener('submit', async function (event) {
   const { error } = await supabase.from('posts').insert({
     title: title,
     content: content,
+    user_id: currentUser.id,
   });
 
   if (error) {
@@ -29,3 +46,5 @@ writeForm.addEventListener('submit', async function (event) {
   alert('게시글이 작성되었습니다.');
   location.href = './index.html';
 });
+
+checkUser();

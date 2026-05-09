@@ -56,6 +56,18 @@ a {
   color: #000;
 }
 
+.logout-btn {
+  font-size: 15px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  color: #000;
+}
+
 .post-section {
   margin-top: 40px;
 }
@@ -320,5 +332,25 @@ a {
 
   background-color: #fff;
 
+  cursor: pointer;
+}
+
+#userEmail {
+  font-size: 14px;
+  color: #555;
+}
+
+.logout-btn {
+  display: none;
+
+  padding: 7px 12px;
+
+  background-color: #222;
+  color: #fff;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 14px;
   cursor: pointer;
 }

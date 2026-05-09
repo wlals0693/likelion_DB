@@ -14,6 +14,10 @@ const editBtn = document.querySelector('#editBtn');
 const deleteBtn = document.querySelector('#deleteBtn');
 
 async function getPosts() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const { data, error } = await supabase
     .from('posts')
     .select('*')
@@ -49,14 +53,19 @@ async function getPosts() {
 
     article.addEventListener('click', function () {
       modalTitle.textContent = post.title;
-
       modalContent.textContent = post.content;
-
       modalDate.textContent = new Date(post.created_at).toLocaleString();
 
-      editBtn.href = `./edit.html?id=${post.id}`;
+      if (user && user.id === post.user_id) {
+        editBtn.style.display = 'inline-block';
+        deleteBtn.style.display = 'inline-block';
 
-      deleteBtn.dataset.id = post.id;
+        editBtn.href = `./edit.html?id=${post.id}`;
+        deleteBtn.dataset.id = post.id;
+      } else {
+        editBtn.style.display = 'none';
+        deleteBtn.style.display = 'none';
+      }
 
       postModal.classList.add('active');
     });
