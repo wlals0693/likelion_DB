@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <h1 class="logo">게시판</h1>
+
+        <div class="menu">
+          <a href="./index.html">홈</a>
+          <a href="./write.html">글쓰기</a>
+          <a href="./login.html">로그인</a>
+          <a href="./signup.html">회원가입</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="form-section">
+        <h2>글쓰기</h2>
+
+        <form id="writeForm" class="post-form">
+          <input
+            type="text"
+            id="title"
+            placeholder="제목을 입력하세요"
+            required
+          />
+
+          <textarea
+            id="content"
+            placeholder="내용을 입력하세요"
+            required
+          ></textarea>
+
+          <button type="submit">등록</button>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="./js/write.js"></script>
+  </body>
+</html>
